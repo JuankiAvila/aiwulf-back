@@ -20,3 +20,8 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+
+# Virtual environment folders
+.venv/
+# Environment variable files
+.env

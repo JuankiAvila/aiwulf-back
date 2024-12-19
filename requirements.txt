@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+aiohttp
+requests
+python-dotenv
+pydantic
+pytest
+pytest-asyncio
+httpx
+openai
+SpeechRecognition
+pygame
+PyAudio
