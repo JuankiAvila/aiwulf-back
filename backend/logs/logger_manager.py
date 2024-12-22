@@ -41,7 +41,7 @@ def get_app_logger(level=logging.INFO):
 
 def get_llm_logger(level=logging.DEBUG):
     """Obtiene el logger para LLM con el nivel DEBUG por defecto."""
-    return logger_manager.get_logger('llm_logger', 'logs/llm.log', level)
+    return logger_manager.get_logger('llm_logger', 'logs/service.log', level)
 
 def get_auth_logger(level=logging.WARNING):
     """Obtiene el logger para autenticación con el nivel WARNING por defecto."""

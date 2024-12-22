@@ -36,23 +36,22 @@ class Speaking:
         pass
 
     @staticmethod
-    def transcribe_audio(file_path: str, api_key: str) -> str:
+    def transcribe_audio(file_path):
         """
         Transcribe el audio de un archivo .wav utilizando OpenAI Whisper.
         """
-        local_client = OpenAI(api_key=api_key)
         try:
             with open(file_path, "rb") as audio_file:
-                transcription = local_client.audio.transcriptions.create(
+                transcription = client.audio.transcriptions.create(
                     model="whisper-1",
                     file=audio_file
                 )
-            print("Transcripción completada:")
-            print(transcription.text)
+            llm_logger.info(f"Transcripción: {transcription.text.strip()}")
             return transcription.text.strip()
         except Exception as e:
             print(f"Error durante la transcripción: {e}")
             return ""
+
 
     def generate_chat_response(
         self,
@@ -111,12 +110,12 @@ class Speaking:
             **EJEMPLOS DE CONVERSACIONES:**
 
             **Ejemplo de corrección para nivel 1 (explicación en español, clase en italiano):**
-                Profesor: Ciao! Sono Alpha, il tuo professore di italiano. Come stai? Estoy queriendo decir Hola, soy Alpha, tu profesor de italiano. ¿Cómo estás?. Podrías decirme Sto bene grazie a te e a te
+                Profesor: Ciao! Sono Alpha, il tuo professore di italiano. Come stai? Estoy queriendo decir Hola, soy Alpha, tu profesor de italiano. ¿Cómo estás?. Podrías decirme Sto bene, grazie a te e a te
                 Usuario: Sto bene, grazie, e ti?  
                 Profesor: Has cometido un error en la preposición, la forma correcta es Sto bene, grazie, e ti?, Continuando la conversazione Hai fratelli? Te estoy diciendo Continuando con la conversación ¿Tienes hermanos? te estoy preguntando si tienes hermanos, en italiano me podrías responder Se ho fratelli e sorelle
 
             **Ejemplo de introducción para nivel 1 (clase en italiano):**
-                Profesor: Ciao! Sono Alpha, il tuo professore di italiano. Come stai? Estoy queriendo decir Hola, soy Alpha, ¿cómo estás?. Podrías decirme Sto bene, grazie, e tu? Esto significa Estoy bien, gracias, ¿y tú? 
+                Profesor: Ciao! Sono Alpha, il tuo professore di italiano. Come stai? Estoy queriendo decir Hola, soy Alpha, ¿cómo estás?. Podrías decirme Sto bene, grazie a te e a te Esto significa Estoy bien, gracias, ¿y tú? 
 
             **Ejemplo de corrección para nivel 1 (explicación en español, clase en alemán):**
                 Profesor: Hallo! Ich heiße Alpha, wie geht es dir? Estoy queriendo decir Hola, me llamo Alpha, ¿cómo estás?. Podrías decir Mir geht es gut, danke, und dir? Esto significa Estoy bien, gracias, ¿y tú?
@@ -212,7 +211,7 @@ class Speaking:
             with open(speech_file_path, "rb") as f:
                 audio_bytes = f.read()
         except Exception as e:
-            print(f"Error leyendo archivo TTS: {e}")
+            llm_logger.error(f"Error leyendo archivo TTS: {e}")
             audio_bytes = b""
 
         return audio_bytes
@@ -254,7 +253,6 @@ async def generate_speaking(
     language: str,
     teacher: str,
     language_class: str,
-    api_key: str
 ) -> dict:
     """
     Orquesta la lógica de speaking con este orden:
@@ -263,12 +261,19 @@ async def generate_speaking(
       3) Generar TTS
     Devuelve un dict con:
      - 'professor_text'
-     - 'professor_audio' (bytes)
+     - 'professor_audio' (base64 string)
     """
     speaking_instance = Speaking()
 
     # 1) Transcribir
-    user_dialog = speaking_instance.transcribe_audio(audio_file_path, api_key)
+    llm_logger.info(f"Transcribiendo audio en {audio_file_path}")
+    llm_logger.info(f"conversation_history: {conversation_history}")
+    llm_logger.info(f"difficulty_level: {difficulty_level}")
+    llm_logger.info(f"language: {language}")
+    llm_logger.info(f"teacher: {teacher}")
+    llm_logger.info(f"language_class: {language_class}")
+    
+    user_dialog = speaking_instance.transcribe_audio(audio_file_path)
 
     # 2) Generar respuesta (GPT)
     professor_text = speaking_instance.generate_chat_response(
@@ -283,7 +288,10 @@ async def generate_speaking(
     # 3) Generar TTS => bytes
     professor_audio_bytes = await speaking_instance.text_to_speech_openai(professor_text, teacher)
 
+    # Convertir a base64
+    professor_audio_b64 = base64.b64encode(professor_audio_bytes).decode("utf-8")
+
     return {
         "professor_text": professor_text,
-        "professor_audio": professor_audio_bytes
+        "professor_audio": professor_audio_b64
     }

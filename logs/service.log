@@ -1,0 +1,253 @@
+2024-12-22 19:59:57,712 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 19:59:57,712 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 19:59:58,902 [INFO] nova: Hello! I'm Nova, your friendly English teacher. How are you today? Let's practice your English together! What would you like to talk about?
+2024-12-22 20:00:25,321 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:00:25,322 [INFO] language_class: ingles
+2024-12-22 20:00:25,322 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpz2pf8yqf.wav
+2024-12-22 20:00:25,322 [INFO] conversation_history: []
+2024-12-22 20:00:25,322 [INFO] difficulty_level: 2
+2024-12-22 20:00:25,322 [INFO] language: en
+2024-12-22 20:00:25,322 [INFO] teacher: nova
+2024-12-22 20:00:25,322 [INFO] language_class: ingles
+2024-12-22 20:00:27,916 [INFO] Transcripción completada: Hi, Nova. Nice to meet you again. I want to speak with you about, for example, an office.
+2024-12-22 20:00:27,917 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:00:32,107 [ERROR] Error en handle_speaking: 1 validation error for SpeakingResponse
+professor_audio
+  Input should be a valid string, unable to parse raw data as a unicode string [type=string_unicode, input_value=b'\xff\xf3\xe4\xc4\x00^4:...UUUUUUUUUUUUUUUUUUUUUUU', input_type=bytes]
+    For further information visit https://errors.pydantic.dev/2.10/v/string_unicode
+2024-12-22 20:04:31,701 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 20:04:31,701 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 20:04:33,106 [INFO] nova: Hello! I'm Nova, your English teacher. How can I help you today with your English learning? Let's have a conversation!
+2024-12-22 20:04:57,355 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:04:57,356 [INFO] language_class: ingles
+2024-12-22 20:04:57,356 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpavzrd_qz.wav
+2024-12-22 20:04:57,356 [INFO] conversation_history: []
+2024-12-22 20:04:57,356 [INFO] difficulty_level: 2
+2024-12-22 20:04:57,357 [INFO] language: en
+2024-12-22 20:04:57,357 [INFO] teacher: nova
+2024-12-22 20:04:57,357 [INFO] language_class: ingles
+2024-12-22 20:05:01,016 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:05:38,216 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:05:38,216 [INFO] language_class: ingles
+2024-12-22 20:05:38,216 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpevvq0o1d.wav
+2024-12-22 20:05:38,216 [INFO] conversation_history: []
+2024-12-22 20:05:38,216 [INFO] difficulty_level: 2
+2024-12-22 20:05:38,216 [INFO] language: en
+2024-12-22 20:05:38,216 [INFO] teacher: nova
+2024-12-22 20:05:38,216 [INFO] language_class: ingles
+2024-12-22 20:05:40,371 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:06:36,016 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:06:36,016 [INFO] language_class: ingles
+2024-12-22 20:06:36,016 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmphqexim1m.wav
+2024-12-22 20:06:36,016 [INFO] conversation_history: []
+2024-12-22 20:06:36,016 [INFO] difficulty_level: 2
+2024-12-22 20:06:36,016 [INFO] language: en
+2024-12-22 20:06:36,016 [INFO] teacher: nova
+2024-12-22 20:06:36,016 [INFO] language_class: ingles
+2024-12-22 20:06:38,335 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:07:42,849 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:07:42,850 [INFO] language_class: ingles
+2024-12-22 20:07:42,850 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmp6c0zigyr.wav
+2024-12-22 20:07:42,850 [INFO] conversation_history: []
+2024-12-22 20:07:42,850 [INFO] difficulty_level: 2
+2024-12-22 20:07:42,850 [INFO] language: en
+2024-12-22 20:07:42,850 [INFO] teacher: nova
+2024-12-22 20:07:42,850 [INFO] language_class: ingles
+2024-12-22 20:07:46,226 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:08:15,377 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:08:15,377 [INFO] language_class: ingles
+2024-12-22 20:08:15,377 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpmzzy4kp4.wav
+2024-12-22 20:08:15,377 [INFO] conversation_history: []
+2024-12-22 20:08:15,377 [INFO] difficulty_level: 2
+2024-12-22 20:08:15,377 [INFO] language: en
+2024-12-22 20:08:15,378 [INFO] teacher: nova
+2024-12-22 20:08:15,378 [INFO] language_class: ingles
+2024-12-22 20:08:18,483 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:10:07,454 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 20:10:07,454 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 20:10:09,078 [INFO] nova: Hello! I’m Nova, your friendly English teacher. How can I help you today? Would you like to practice speaking, or do you have questions about English?
+2024-12-22 20:23:33,833 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 20:23:33,850 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 20:23:35,047 [INFO] nova: Hello! I’m Nova, your friendly English teacher. How are you today? Let’s have a nice conversation to improve your English! What would you like to talk about?
+2024-12-22 20:23:59,851 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:23:59,851 [INFO] language_class: ingles
+2024-12-22 20:23:59,851 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmp2kt5zv5h.wav
+2024-12-22 20:23:59,852 [INFO] conversation_history: []
+2024-12-22 20:23:59,852 [INFO] difficulty_level: 2
+2024-12-22 20:23:59,853 [INFO] language: en
+2024-12-22 20:23:59,853 [INFO] teacher: nova
+2024-12-22 20:23:59,853 [INFO] language_class: ingles
+2024-12-22 20:24:02,266 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:24:29,007 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:24:29,007 [INFO] language_class: ingles
+2024-12-22 20:24:29,007 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpomg7i1yy.wav
+2024-12-22 20:24:29,007 [INFO] conversation_history: []
+2024-12-22 20:24:29,008 [INFO] difficulty_level: 2
+2024-12-22 20:24:29,008 [INFO] language: en
+2024-12-22 20:24:29,008 [INFO] teacher: nova
+2024-12-22 20:24:29,008 [INFO] language_class: ingles
+2024-12-22 20:24:30,145 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:24:49,324 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:24:49,325 [INFO] language_class: ingles
+2024-12-22 20:24:49,325 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpjhi9p6zc.wav
+2024-12-22 20:24:49,325 [INFO] conversation_history: []
+2024-12-22 20:24:49,325 [INFO] difficulty_level: 2
+2024-12-22 20:24:49,325 [INFO] language: en
+2024-12-22 20:24:49,325 [INFO] teacher: nova
+2024-12-22 20:24:49,326 [INFO] language_class: ingles
+2024-12-22 20:24:53,570 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:31:16,374 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 20:31:16,375 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 20:31:17,386 [INFO] nova: Hello! I'm Nova, your friendly English teacher. How can I help you today? Would you like to practice speaking, listening, or something else in English?
+2024-12-22 20:31:38,946 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:31:38,946 [INFO] language_class: ingles
+2024-12-22 20:31:38,947 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmp8qdgl9fg.wav
+2024-12-22 20:31:38,947 [INFO] conversation_history: []
+2024-12-22 20:31:38,947 [INFO] difficulty_level: 2
+2024-12-22 20:31:38,947 [INFO] language: en
+2024-12-22 20:31:38,947 [INFO] teacher: nova
+2024-12-22 20:31:38,947 [INFO] language_class: ingles
+2024-12-22 20:31:40,309 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:33:24,289 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 20:33:24,289 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 20:33:25,356 [INFO] nova: Hello! I'm Nova, your friendly English teacher. How can I assist you today? Would you like to practice speaking, or maybe you want to learn new vocabulary?
+2024-12-22 20:44:40,460 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 20:44:40,462 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 20:44:41,772 [INFO] nova: Hello! I'm Nova, your friendly English teacher. I'm here to help you improve your English skills. How are you today?
+2024-12-22 20:48:37,663 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 20:48:37,664 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 20:48:38,726 [INFO] nova: Hello! I'm Nova, your friendly English teacher. How can I help you today? Would you like to practice speaking or do some exercises?
+2024-12-22 20:52:26,694 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 20:52:26,695 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 20:52:27,588 [INFO] nova: Hello! I'm Nova, your friendly English teacher. How are you today? Let's practice some English together! What would you like to talk about?
+2024-12-22 20:56:26,373 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 20:56:26,374 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 20:56:27,456 [INFO] nova: Hello! I'm Nova, your English teacher. How are you today?
+2024-12-22 20:56:40,876 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:56:40,876 [INFO] language_class: ingles
+2024-12-22 20:56:40,876 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpnq6qxfq_.wav
+2024-12-22 20:56:40,876 [INFO] conversation_history: []
+2024-12-22 20:56:40,876 [INFO] difficulty_level: 2
+2024-12-22 20:56:40,876 [INFO] language: en
+2024-12-22 20:56:40,876 [INFO] teacher: nova
+2024-12-22 20:56:40,876 [INFO] language_class: ingles
+2024-12-22 20:56:44,297 [INFO] Transcripción: Hi Nova, how are you? I'm fine, thank you.
+2024-12-22 20:56:44,297 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 20:57:01,792 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 20:57:01,793 [INFO] language_class: ingles
+2024-12-22 20:57:01,793 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpjlzufh6r.wav
+2024-12-22 20:57:01,793 [INFO] conversation_history: []
+2024-12-22 20:57:01,793 [INFO] difficulty_level: 2
+2024-12-22 20:57:01,793 [INFO] language: en
+2024-12-22 20:57:01,793 [INFO] teacher: nova
+2024-12-22 20:57:01,793 [INFO] language_class: ingles
+2024-12-22 20:57:02,721 [INFO] Transcripción: Thank you. Bye.
+2024-12-22 20:57:02,721 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 21:05:18,154 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 21:05:18,156 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 21:05:19,021 [INFO] nova: Hello! I'm Nova, your English teacher. I'm excited to help you improve your English skills. How are you today?
+2024-12-22 21:05:38,608 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 21:05:38,610 [INFO] language_class: ingles
+2024-12-22 21:05:38,610 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmp43op0epx.wav
+2024-12-22 21:05:38,611 [INFO] conversation_history: []
+2024-12-22 21:05:38,611 [INFO] difficulty_level: 2
+2024-12-22 21:05:38,611 [INFO] language: en
+2024-12-22 21:05:38,617 [INFO] teacher: nova
+2024-12-22 21:05:38,617 [INFO] language_class: ingles
+2024-12-22 21:05:41,385 [INFO] Transcripción: Дякую за перегляд!
+2024-12-22 21:05:41,385 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 21:12:03,662 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 21:12:03,663 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 21:12:04,679 [INFO] nova: Hello! I’m Nova, your English teacher. How can I help you today? Would you like to practice speaking, writing, or something else?
+2024-12-22 21:12:20,380 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 21:12:20,380 [INFO] language_class: ingles
+2024-12-22 21:12:20,380 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpwj99c52i.wav
+2024-12-22 21:12:20,381 [INFO] conversation_history: []
+2024-12-22 21:12:20,381 [INFO] difficulty_level: 2
+2024-12-22 21:12:20,381 [INFO] language: en
+2024-12-22 21:12:20,381 [INFO] teacher: nova
+2024-12-22 21:12:20,381 [INFO] language_class: ingles
+2024-12-22 21:12:21,372 [INFO] Transcripción: Thank you.
+2024-12-22 21:12:21,373 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 21:18:23,037 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 21:18:23,038 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 21:18:24,353 [INFO] nova: Hello! I am Nova, your friendly English teacher. How can I help you today? Would you like to start with a conversation or do you have something specific you want to practice?
+2024-12-22 21:18:46,584 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 21:18:46,584 [INFO] language_class: ingles
+2024-12-22 21:18:46,584 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpnhsosnh9.wav
+2024-12-22 21:18:46,585 [INFO] conversation_history: []
+2024-12-22 21:18:46,585 [INFO] difficulty_level: 2
+2024-12-22 21:18:46,585 [INFO] language: en
+2024-12-22 21:18:46,585 [INFO] teacher: nova
+2024-12-22 21:18:46,585 [INFO] language_class: ingles
+2024-12-22 21:18:48,854 [INFO] Transcripción: 📢 Share this video with your friends on social media. It's a big help to me.
+2024-12-22 21:18:48,855 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 21:19:10,850 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 21:19:10,851 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 21:19:12,095 [INFO] nova: Hello! I'm Nova, your friendly English teacher. How can I help you today? Would you like to practice speaking or learn new vocabulary?
+2024-12-22 21:19:35,511 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 21:19:35,512 [INFO] language_class: ingles
+2024-12-22 21:19:35,512 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpjaa9r_hj.wav
+2024-12-22 21:19:35,512 [INFO] conversation_history: []
+2024-12-22 21:19:35,512 [INFO] difficulty_level: 2
+2024-12-22 21:19:35,512 [INFO] language: en
+2024-12-22 21:19:35,512 [INFO] teacher: nova
+2024-12-22 21:19:35,512 [INFO] language_class: ingles
+2024-12-22 21:19:36,875 [INFO] Transcripción: y así que se queda si te parece que está bien o no está bien se arrolló así que de feedback de que no está haciendo nada o es muy básico
+2024-12-22 21:19:36,875 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 21:20:12,478 [INFO] start_conversation => difficulty=1, teacher=alpha, language_class=ingles
+2024-12-22 21:20:12,479 [DEBUG] Datos de entrada: 1, español, alpha, ingles
+2024-12-22 21:20:14,323 [INFO] alpha: Hello! I'm Alpha, your English teacher. How are you? Estoy queriendo decir Hola, soy Alpha, tu profesor de inglés. ¿Cómo estás? You could say I am fine, thank you. Esto significa Estoy bien, gracias.
+2024-12-22 21:20:34,087 [INFO] handle_speaking => difficulty=1, => mapeado => 1/alpha
+2024-12-22 21:20:34,088 [INFO] language_class: ingles
+2024-12-22 21:20:34,088 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpuor5ga6r.wav
+2024-12-22 21:20:34,088 [INFO] conversation_history: []
+2024-12-22 21:20:34,088 [INFO] difficulty_level: 1
+2024-12-22 21:20:34,088 [INFO] language: en
+2024-12-22 21:20:34,088 [INFO] teacher: alpha
+2024-12-22 21:20:34,088 [INFO] language_class: ingles
+2024-12-22 21:20:35,140 [INFO] Transcripción: Thank you.
+2024-12-22 21:20:35,141 [DEBUG] Datos de entrada: 1, en, alpha, ingles
+2024-12-22 21:21:27,043 [INFO] start_conversation => difficulty=2, teacher=nova, language_class=ingles
+2024-12-22 21:21:27,043 [DEBUG] Datos de entrada: 2, español, nova, ingles
+2024-12-22 21:21:28,083 [INFO] nova: Hello! I am Nova, your English teacher. It's great to meet you! How are you today?
+2024-12-22 21:21:43,863 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 21:21:43,863 [INFO] language_class: ingles
+2024-12-22 21:21:43,863 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpwo8nfh0t.wav
+2024-12-22 21:21:43,863 [INFO] conversation_history: []
+2024-12-22 21:21:43,863 [INFO] difficulty_level: 2
+2024-12-22 21:21:43,863 [INFO] language: en
+2024-12-22 21:21:43,863 [INFO] teacher: nova
+2024-12-22 21:21:43,863 [INFO] language_class: ingles
+2024-12-22 21:21:46,332 [INFO] Transcripción: Hi, Nova, how are you? I'm fine, thank you. How are you?
+2024-12-22 21:21:46,332 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 21:22:13,933 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 21:22:13,933 [INFO] language_class: ingles
+2024-12-22 21:22:13,933 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmp61xhchy7.wav
+2024-12-22 21:22:13,933 [INFO] conversation_history: []
+2024-12-22 21:22:13,933 [INFO] difficulty_level: 2
+2024-12-22 21:22:13,933 [INFO] language: en
+2024-12-22 21:22:13,933 [INFO] teacher: nova
+2024-12-22 21:22:13,933 [INFO] language_class: ingles
+2024-12-22 21:22:15,395 [INFO] Transcripción: In my free time I like to play video games, also programming AI, and you know, that kind of things.
+2024-12-22 21:22:15,395 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 21:22:45,768 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 21:22:45,768 [INFO] language_class: ingles
+2024-12-22 21:22:45,768 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpm5xmw1ny.wav
+2024-12-22 21:22:45,768 [INFO] conversation_history: []
+2024-12-22 21:22:45,768 [INFO] difficulty_level: 2
+2024-12-22 21:22:45,768 [INFO] language: en
+2024-12-22 21:22:45,768 [INFO] teacher: nova
+2024-12-22 21:22:45,768 [INFO] language_class: ingles
+2024-12-22 21:22:47,963 [INFO] Transcripción: I like to play, for example, video games such as Call of Duty that are really interesting.
+2024-12-22 21:22:47,963 [DEBUG] Datos de entrada: 2, en, nova, ingles
+2024-12-22 21:23:20,131 [INFO] handle_speaking => difficulty=2, => mapeado => 2/nova
+2024-12-22 21:23:20,131 [INFO] language_class: ingles
+2024-12-22 21:23:20,131 [INFO] Transcribiendo audio en /var/folders/0r/f9sq630x44g14496d114xs_w0000gn/T/tmpbsdz0djr.wav
+2024-12-22 21:23:20,131 [INFO] conversation_history: []
+2024-12-22 21:23:20,132 [INFO] difficulty_level: 2
+2024-12-22 21:23:20,132 [INFO] language: en
+2024-12-22 21:23:20,132 [INFO] teacher: nova
+2024-12-22 21:23:20,132 [INFO] language_class: ingles
+2024-12-22 21:23:21,953 [INFO] Transcripción: Thank you for watching.
+2024-12-22 21:23:21,953 [DEBUG] Datos de entrada: 2, en, nova, ingles
