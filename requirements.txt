@@ -11,3 +11,4 @@ openai
 SpeechRecognition
 pygame
 PyAudio
+python-multipart

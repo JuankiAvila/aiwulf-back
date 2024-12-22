@@ -1,7 +1,7 @@
 # app/api/v1/endpoints.py
-# Versión: 1.0.1
+# Versión: 1.0.2
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Form, File, UploadFile
 from backend.app.api.v1.handlers.handlers_writing import (
     handle_llm_writing,
     handle_writing_instructions,
@@ -10,7 +10,7 @@ from backend.app.api.v1.handlers.handlers_writing import (
     handle_basic_writing_hint
 )
 from backend.app.api.v1.handlers.handlers_login import handle_login
-from backend.app.schemas.llm_writing import (
+from backend.app.schemas.writing_schema import (
     LLM_writing_request,
     LLM_writing_response,
     InstructionsRequest,
@@ -24,10 +24,14 @@ from backend.app.schemas.llm_writing import (
 from backend.app.schemas.user import UserLogin, UserResponse
 from backend.logs.logger_manager import get_llm_logger, get_app_logger
 
+# Importamos el handlers_speaking y su schema
+from backend.app.api.v1.handlers.handlers_speaking import handle_speaking, handle_speaking_start
+from backend.app.schemas.speaking_schema import SpeakingResponse, SpeakingStartResponse, SpeakingStartRequest
+from fastapi import Form, File, UploadFile
+
 llm_logger = get_llm_logger()
 app_logger = get_app_logger()
 
-# Configurar el logger para este módulo
 router = APIRouter()
 
 @router.post('/login', response_model=UserResponse)
@@ -116,3 +120,40 @@ async def llm_basic_writing_hint(data: BasicHintRequest):
     except Exception as e:
         llm_logger.error(f"Error inesperado en /llm/basic-writing-hint: {e}")
         raise HTTPException(status_code=500, detail="Error interno al obtener la pista básica de escritura.")
+
+@router.post("/llm/start_conversation", response_model=SpeakingStartResponse)
+async def llm_start_conversation(data: SpeakingStartRequest):
+    """
+    Genera el PRIMER audio de la conversación (Nova inicia).
+    data => { difficulty, language_explication, language_class }
+    """
+    try:
+        response = await handle_speaking_start(data)
+        return response
+    except HTTPException as http_exc:
+        raise http_exc
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error interno en /llm/start_conversation: {e}")
+
+@router.post("/llm/speaking", response_model=SpeakingResponse)
+async def llm_speaking(
+    difficulty: str = Form(...),
+    target_language: str = Form(...),
+    native_language: str = Form(...),
+    user_audio: UploadFile = File(None)  # Podría llegar None si no envías
+):
+    """
+    Interacciones posteriores: envías el audio del usuario.
+    """
+    try:
+        resp = await handle_speaking(
+            difficulty=difficulty,
+            target_language=target_language,
+            native_language=native_language,
+            user_audio=user_audio
+        )
+        return resp
+    except HTTPException as http_exc:
+        raise http_exc
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error interno en /llm/speaking: {e}")

@@ -11,8 +11,6 @@ import random
 llm_logger = get_llm_logger()
 load_dotenv()
 
-ASPECTS = ""
-TARGET_SENTENCE = ""
 
 api_key = os.getenv("OPENAI_API_KEY")
 
@@ -25,6 +23,16 @@ class WritingNova():
 
     def __init__(self):
         pass
+    def get_language_name(self, lang_code):
+        languages = {
+            "es": "Español",
+            "en": "Inglés",
+            "de": "Alemán",
+            "fr": "Francés",
+            "pt": "Portugués",
+            "it": "Italiano"
+        }
+        return languages.get(lang_code, "Idioma no soportado")
     def get_basic_topics(self, language):
             basic_topics = {
                 "Español": [
@@ -73,220 +81,443 @@ class WritingNova():
             return basic_topics.get(language, [])
 
     def get_recursos_gramaticales_it(self, dificultad):
-        if dificultad.lower() == "principiante":
-            return "1. Verbi regolari al presente ..."
-        elif dificultad.lower() == "avanzado":
-            return "1. Passato prossimo e imperfetto ..."
+        if dificultad == "principiante":
+            return """
+            1. Verbi regolari al presente (-are, -ere, -ire).
+            2. Articoli definiti e indefiniti (il, lo, la, un, una).
+            3. Concordanza di genere e numero (ragazzo, ragazza, ragazzi).
+            4. Formazione di frasi negative con "non".
+            5. Pronomi personali di base (io, tu, lui, lei).
+            6. Uso del verbo "essere" e "avere".
+            7. Preposizioni di base (a, in, con).
+            8. Formazione di domande semplici (Dove sei?).
+            9. Aggettivi possessivi (mio, tuo, suo).
+            10. Uso di numeri e giorni della settimana.
+            """
+        elif dificultad == "avanzado":
+            return """
+            1. Passato prossimo e imperfetto (ho mangiato, mangiavo).
+            2. Futuro semplice (io parlerò).
+            3. Uso di pronomi di oggetto diretto e indiretto (mi, ti, lo, gli).
+            4. Congiuntivo presente in frasi subordinate (che io vada).
+            5. Concordanza tra soggetto e verbo nei tempi composti.
+            6. Uso di preposizioni articolate (nel, allo, sulla).
+            7. Comparativi e superlativi (più grande, il più grande).
+            8. Costruzione di frasi condizionali semplici (Se vieni, ti aiuto).
+            9. Voce passiva di base (Il libro è stato scritto).
+            10. Avverbi comuni e la loro posizione nella frase.
+            """
+        elif dificultad == "profesional":
+            return """
+            1. Congiuntivo imperfetto e trapassato (se io fossi, se io avessi saputo).
+            2. Costruzione di frasi subordinate complesse.
+            3. Uso avanzato dei tempi verbali in testi formali.
+            4. Costruzione della voce passiva in registri formali.
+            5. Espressioni idiomatiche avanzate (mettere in discussione).
+            6. Lessico specializzato per corrispondenza professionale.
+            7. Uso di connettori discorsivi avanzati (pertanto, affinché).
+            8. Concordanza in testi accademici e formali.
+            9. Formazione di perifrasi verbali (stavo per dire).
+            10. Uso del condizionale composto (avrei voluto).
+            """
         else:
-            return "1. Congiuntivo imperfetto e trapassato ..."
+            return "Dificultad no soportada."
 
     def get_recursos_gramaticales_fr(self, dificultad):
-        if dificultad.lower() == "principiante":
-            return "1. Verbes réguliers au présent..."
-        elif dificultad.lower() == "avanzado":
-            return "1. Passé composé et imparfait..."
+        if dificultad == "principiante":
+            return """
+            1. Verbes réguliers au présent (-er, -ir, -re).
+            2. Articles définis et indéfinis (le, la, un, une).
+            3. Pronoms personnels de base (je, tu, il, elle).
+            4. Utilisation de base de "être" et "avoir".
+            5. Formation de questions simples (Est-ce que...?).
+            6. Négation de base avec "ne... pas".
+            7. Adjectifs de base et leur accord (grand, grande).
+            8. Introduction aux nombres et couleurs.
+            9. Formation du pluriel (livre/livres, maison/maisons).
+            10. Expressions de base de temps (aujourd'hui, demain).
+            """
+        elif dificultad == "avanzado":
+            return """
+            1. Passé composé et imparfait (j'ai parlé, je parlais).
+            2. Futur simple (je parlerai).
+            3. Utilisation de pronoms d'objet direct et indirect (le, la, lui).
+            4. Subjonctif présent dans les phrases subordonnées (Il faut que tu viennes).
+            5. Utilisation des adverbes de fréquence (souvent, rarement).
+            6. Accord des adjectifs en genre et en nombre.
+            7. Voix passive de base (Le livre a été écrit).
+            8. Formation de questions indirectes (Je me demande si...).
+            9. Comparatifs et superlatifs (plus/moins... que).
+            10. Utilisation des prépositions composées (près de, à côté de).
+            """
+        elif dificultad == "profesional":
+            return """
+            1. Subjonctif passé et plus-que-parfait (que j’aie parlé, que j’eusse parlé).
+            2. Utilisation des temps composés avancés (passé antérieur, conditionnel passé).
+            3. Formation de phrases passives dans les registres formels.
+            4. Utilisation des connecteurs argumentatifs avancés (par conséquent, en revanche).
+            5. Expressions idiomatiques pour contextes formels (avoir le vent en poupe).
+            6. Concordance des temps dans les narrations complexes.
+            7. Style indirect dans les textes professionnels (Il a dit qu’il viendrait).
+            8. Construction de phrases conditionnelles complexes (Si j'avais su, je serais venu).
+            9. Lexique technique selon le domaine professionnel.
+            10. Utilisation avancée des périphrases verbales (être en train de, venir de).
+            """
         else:
-            return "1. Subjonctif passé et plus-que-parfait ..."
+            return "Dificultad no soportada."
 
     def get_recursos_gramaticales_es(self, dificultad):
-        if dificultad.lower() == "principiante":
-            return "1. Verbos regulares en presente ..."
-        elif dificultad.lower() == "avanzado":
-            return "1. Pretérito perfecto e imperfecto ..."
+        if dificultad == "principiante":
+            return """
+            1. Verbos regulares en presente (-ar, -er, -ir).
+            2. Artículos definidos e indefinidos (el, la, un, una).
+            3. Pronombres personales básicos (yo, tú, él, ella).
+            4. Uso básico de "ser" y "estar".
+            5. Formación de preguntas simples (¿Qué es...?).
+            6. Negación básica con "no".
+            7. Adjetivos básicos y su concordancia (grande, pequeño).
+            8. Introducción a números y colores.
+            9. Formación del plural (libro/libros, casa/casas).
+            10. Expresiones básicas de tiempo (hoy, mañana).
+            """
+        elif dificultad == "avanzado":
+            return """
+            1. Pretérito perfecto e imperfecto (he hablado, hablaba).
+            2. Futuro simple (hablaré).
+            3. Uso de pronombres de objeto directo e indirecto (lo, la, le).
+            4. Subjuntivo presente en frases subordinadas (Es necesario que vengas).
+            5. Uso de adverbios de frecuencia (a menudo, raramente).
+            6. Concordancia de adjetivos en género y número.
+            7. Voz pasiva básica (El libro fue escrito).
+            8. Formación de preguntas indirectas (Me pregunto si...).
+            9. Comparativos y superlativos (más/menos... que).
+            10. Uso de preposiciones compuestas (cerca de, al lado de).
+            """
+        elif dificultad == "profesional":
+            return """
+            1. Subjuntivo pasado y pluscuamperfecto (que haya hablado, que hubiera hablado).
+            2. Uso de tiempos compuestos avanzados (pretérito anterior, condicional compuesto).
+            3. Formación de frases pasivas en registros formales.
+            4. Uso de conectores argumentativos avanzados (por lo tanto, sin embargo).
+            5. Expresiones idiomáticas para contextos formales (tener el viento a favor).
+            6. Concordancia de tiempos en narraciones complejas.
+            7. Estilo indirecto en textos profesionales (Dijo que vendría).
+            8. Construcción de oraciones condicionales complejas (Si hubiera sabido, habría venido).
+            9. Léxico técnico según el campo profesional.
+            10. Uso avanzado de perífrasis verbales (estar a punto de, acabar de).
+            """
         else:
-            return "1. Subjuntivo pasado y pluscuamperfecto ..."
+            return "Dificultad no soportada."
 
     def get_recursos_gramaticales_en(self, dificultad):
-        if dificultad.lower() == "principiante":
-            return "1. Regular verbs in present tense ..."
-        elif dificultad.lower() == "avanzado":
-            return "1. Present perfect and past simple ..."
+        if dificultad == "principiante":
+            return """
+            1. Regular verbs in present tense (-ed, -s).
+            2. Definite and indefinite articles (the, a, an).
+            3. Basic personal pronouns (I, you, he, she).
+            4. Basic use of "to be" and "to have".
+            5. Formation of simple questions (What is...?).
+            6. Basic negation with "not".
+            7. Basic adjectives and their agreement (big, small).
+            8. Introduction to numbers and colors.
+            9. Formation of plural (book/books, house/houses).
+            10. Basic time expressions (today, tomorrow).
+            """
+        elif dificultad == "avanzado":
+            return """
+            1. Present perfect and past simple (I have spoken, I spoke).
+            2. Future simple (I will speak).
+            3. Use of direct and indirect object pronouns (him, her, it).
+            4. Present subjunctive in subordinate clauses (It is necessary that you come).
+            5. Use of frequency adverbs (often, rarely).
+            6. Adjective agreement in gender and number.
+            7. Basic passive voice (The book was written).
+            8. Formation of indirect questions (I wonder if...).
+            9. Comparatives and superlatives (more/less... than).
+            10. Use of compound prepositions (near to, next to).
+            """
+        elif dificultad == "profesional":
+            return """
+            1. Past subjunctive and pluperfect (if I had spoken, if I had known).
+            2. Use of advanced compound tenses (past perfect, conditional perfect).
+            3. Formation of passive sentences in formal registers.
+            4. Use of advanced argumentative connectors (therefore, however).
+            5. Idiomatic expressions for formal contexts (to have the wind at one's back).
+            6. Tense agreement in complex narratives.
+            7. Indirect style in professional texts (He said he would come).
+            8. Construction of complex conditional sentences (If I had known, I would have come).
+            9. Technical vocabulary according to the professional field.
+            10. Advanced use of verbal periphrases (to be about to, to have just).
+            """
         else:
-            return "1. Past subjunctive and pluperfect ..."
+            return "Dificultad no soportada."
 
     def get_recursos_gramaticales_pt(self, dificultad):
-        if dificultad.lower() == "principiante":
-            return "1. Verbos regulares no presente ..."
-        elif dificultad.lower() == "avanzado":
-            return "1. Pretérito perfeito e imperfeito ..."
+        if dificultad == "principiante":
+            return """
+            1. Verbos regulares no presente (-ar, -er, -ir).
+            2. Artigos definidos e indefinidos (o, a, um, uma).
+            3. Pronomes pessoais básicos (eu, tu, ele, ela).
+            4. Uso básico de "ser" e "estar".
+            5. Formação de perguntas simples (O que é...?).
+            6. Negação básica com "não".
+            7. Adjetivos básicos e sua concordância (grande, pequeno).
+            8. Introdução a números e cores.
+            9. Formação do plural (livro/livros, casa/casas).
+            10. Expressões básicas de tempo (hoje, amanhã).
+            """
+        elif dificultad == "avanzado":
+            return """
+            1. Pretérito perfeito e imperfeito (eu falei, eu falava).
+            2. Futuro simples (eu falarei).
+            3. Uso de pronomes de objeto direto e indireto (o, a, lhe).
+            4. Subjuntivo presente em frases subordinadas (É necessário que venhas).
+            5. Uso de advérbios de frequência (frequentemente, raramente).
+            6. Concordância de adjetivos em gênero e número.
+            7. Voz passiva básica (O livro foi escrito).
+            8. Formação de perguntas indiretas (Pergunto-me se...).
+            9. Comparativos e superlativos (mais/menos... que).
+            10. Uso de preposições compostas (perto de, ao lado de).
+            """
+        elif dificultad == "profesional":
+            return """
+            1. Subjuntivo passado e mais-que-perfeito (que eu tenha falado, que eu tivesse falado).
+            2. Uso de tempos compostos avançados (pretérito anterior, condicional composto).
+            3. Formação de frases passivas em registros formais.
+            4. Uso de conectores argumentativos avançados (portanto, no entanto).
+            5. Expressões idiomáticas para contextos formais (ter o vento a favor).
+            6. Concordância de tempos em narrações complexas.
+            7. Estilo indireto em textos profissionais (Ele disse que viria).
+            8. Construção de orações condicionais complexas (Se eu soubesse, teria vindo).
+            9. Léxico técnico conforme o campo profissional.
+            10. Uso avançado de perífrases verbais (estar prestes a, acabar de).
+            """
         else:
-            return "1. Subjuntivo passado e mais-que-perfeito ..."
+            return "Dificultad no soportada."
 
     def get_recursos_gramaticales_de(self, dificultad):
-        if dificultad.lower() == "principiante":
-            return "1. Regelmäßige Verben im Präsens ..."
-        elif dificultad.lower() == "avanzado":
-            return "1. Perfekt und Präteritum ..."
+        if dificultad == "principiante":
+            return """
+            1. Regelmäßige Verben im Präsens (-en, -t).
+            2. Bestimmte und unbestimmte Artikel (der, die, das, ein, eine).
+            3. Grundlegende Personalpronomen (ich, du, er, sie).
+            4. Grundlegende Verwendung von "sein" und "haben".
+            5. Bildung einfacher Fragen (Was ist...?).
+            6. Grundlegende Verneinung mit "nicht".
+            7. Grundlegende Adjektive und deren Übereinstimmung (groß, klein).
+            8. Einführung in Zahlen und Farben.
+            9. Bildung des Plurals (Buch/Bücher, Haus/Häuser).
+            10. Grundlegende Zeitausdrücke (heute, morgen).
+            """
+        elif dificultad == "avanzado":
+            return """
+            1. Perfekt und Präteritum (ich habe gesprochen, ich sprach).
+            2. Futur I (ich werde sprechen).
+            3. Verwendung von direkten und indirekten Objektpronomen (ihn, ihr, es).
+            4. Konjunktiv I in Nebensätzen (Es ist notwendig, dass du kommst).
+            5. Verwendung von Häufigkeitsadverbien (oft, selten).
+            6. Übereinstimmung der Adjektive in Geschlecht und Zahl.
+            7. Grundlegende passive Stimme (Das Buch wurde geschrieben).
+            8. Bildung indirekter Fragen (Ich frage mich, ob...).
+            9. Komparative und Superlative (mehr/weniger... als).
+            10. Verwendung zusammengesetzter Präpositionen (in der Nähe von, neben).
+            """
+        elif dificultad == "profesional":
+            return """
+            1. Konjunktiv II und Plusquamperfekt (wenn ich gesprochen hätte, wenn ich gewusst hätte).
+            2. Verwendung fortgeschrittener zusammengesetzter Zeiten (Plusquamperfekt, Konditional II).
+            3. Bildung passiver Sätze in formellen Registern.
+            4. Verwendung fortgeschrittener argumentativer Konnektoren (daher, jedoch).
+            5. Idiomatische Ausdrücke für formelle Kontexte (den Wind im Rücken haben).
+            6. Zeitliche Übereinstimmung in komplexen Erzählungen.
+            7. Indirekter Stil in professionellen Texten (Er sagte, er würde kommen).
+            8. Konstruktion komplexer Konditionalsätze (Wenn ich gewusst hätte, wäre ich gekommen).
+            9. Fachvokabular je nach Berufsfeld.
+            10. Fortgeschrittene Verwendung von Verbalperiphrasen (im Begriff sein, gerade).
+            """
         else:
-            return "1. Konjunktiv II und Plusquamperfekt ..."
-
-    def generate_start_prompt(self, language, level):
+            return "Dificultad no soportada."
+    def generate_start_prompt(self,native_language, language, level):
 
         if language.lower() == "italiano":
-            grammar = self.get_recursos_gramaticales_it(level)
+            grammar = self.get_recursos_gramaticales_it(level.lower())
         elif language.lower() == "francés":
-            grammar = self.get_recursos_gramaticales_fr(level)
+            grammar = self.get_recursos_gramaticales_fr(level.lower())
         elif language.lower() == "español":
-            grammar = self.get_recursos_gramaticales_es(level)
+            grammar = self.get_recursos_gramaticales_es(level.lower())
         elif language.lower() == "inglés":
-            grammar = self.get_recursos_gramaticales_en(level)
+            grammar = self.get_recursos_gramaticales_en(level.lower())
         elif language.lower() == "portugués":
-            grammar = self.get_recursos_gramaticales_pt(level)
+            grammar = self.get_recursos_gramaticales_pt(level.lower())
         elif language.lower() == "alemán":
-            grammar = self.get_recursos_gramaticales_de(level)
+            grammar = self.get_recursos_gramaticales_de(level.lower())
         else:
             grammar = "Idioma no soportado."
-
         if level.lower() == "principiante":
             topics = ["Mi familia", "Mis pasatiempos", "Un día en la escuela", "Mi comida favorita"]
         elif level.lower() == "avanzado":
             topics = ["El impacto de la tecnología en la sociedad", "La importancia de aprender idiomas", "Un viaje inolvidable", "El cambio climático y sus efectos"]
         else:
             topics = ["La globalización y sus consecuencias", "La inteligencia artificial y el futuro del trabajo", "La ética en la biotecnología", "El papel de la educación en el desarrollo personal"]
-   
+
+        native_language = self.get_language_name(native_language)
+        topics = random.choice(topics)
         prompt = f"""
-        Eres un LLM experto en análisis de escritura en los idiomas Alemán, Inglés, Portugués, Español y Francés. Tu tarea consiste en proporcionar los recursos gramaticales clave que deben incluirse en la redacción del usuario, según el nivel de dificultad y el idioma especificado.
+        Eres un LLM experto en enseñanza de idiomas. Tu tarea es crear una lección de gramática para un estudiante de Inglés en el nivel Principiante.
+        **Idioma de la lección:** {language}
+        **Nivel de dificultad:** {level}
+        **Tema de la lección:** {topics}
+        **Recursos gramaticales:**
+        {grammar}            
+        **Idioma nativa del usuario:** {native_language}
 
-        **Parámetros recibidos:**
-        1. **Idioma seleccionado**: {language}
-        2. **Nivel de dificultad**: {level} (Principiante, Avanzado, Profesional)
-        3. **Gramatica sobre la que deberas elegir**: {grammar}
+        **Instrucciones para las lecciones:**
+        1. Dependiendo del nivel de dificultad debes tener en cuenta lo siguiente:
+            - Principiante: el numero de palabras de principiante es 150 y deberas elegir 4 aspectos gramaticales.
+            - Avanzado: el numero de palabras de avanzado es 200 y deberas elegir 6 aspectos gramaticales.
+            - Profesional: el numero de palabras de profesional es 250 y deberas elegir 8 aspectos gramaticales.
+        2. Debes proporcionar un menaje unico que incluya lo siguiente estructura:
+            Primera seccion debe mostrar : Tema: {topics}
+            La segunda seccion debe mostrar: Numero de palabras: [numero de palabras segun el nivel]
+            La tercera seccion debe mostrar: Aspectos gramaticales:
+            La cuarta seccion mostrará el numero de los diferentes aspectos de gramatica aletorios que selecciones y debe maquetarse
+                - Se usara: [recursos gramaticales seleccionados])
 
-        **Instrucciones:**
-        1. Proporciona una lista de recursos gramaticales esenciales para el idioma {language} según el nivel {level}:
-        - **Nivel Principiante**: Menciona 4 recursos gramaticales básicos. Y deberán escribirse 150 palabras, además debes indicar el tema del que se tiene que hablar el cual podrás seleccionar aleatoriamente de {topics}.
-        - **Nivel Avanzado**: Menciona 8 recursos gramaticales intermedios/avanzados. Y deberán escribirse 200 palabras, además debes indicar el tema del que se tiene que hablar el cual podrás seleccionar aleatoriamente de {topics}.
-        - **Nivel Profesional**: Menciona 12 recursos gramaticales avanzados. Y deberán escribirse 250 palabras, además debes indicar el tema del que se tiene que hablar el cual podrás seleccionar aleatoriamente de {topics}.
+        **Ejemplo de como debes dar las respuestas:**
 
-        Ejemplo de como deber devolver los mensajes (Recuerda que esto es tan solo un ejemplo):
-        {{
-            "message_front": "Tema: <tema seleccionado> \n Número de palabras: <numero de palabras correspondientes>\n<aspectos gramticales aleatorios seleccionados separados por bullet points> ",
-            "aspects": "<aspectos gramticales aleatorios seleccionados seleccionados>"
-        }}
-
-        **Importante**: Solo devuelve el json
-        """
+        **Ejemplo 1**
+            Tienes los siguientes datos:
+                - Tema: Mi familia
+                - Level: Principiante, por lo tanto el nuemor de palabras es 150
+                - Idioma de aprendizaje: Inlgés
+                - Idioma nativo: Español
+            Tu respuesta deberia ser en este ejemplo:
+            Tema: Mi familia
+            Número de palabras: 150
+            Aspectos gramaticales:
+                - Uso de regular verbs in present tense (-ed, -s)
+                - Uso de definite and indefinite articles (the, a, an)
+                - Uso de basic personal pronouns (I, you, he, she)
+                - Uso de basic adjectives and their agreement (big, small)
+        **Ejemplo 2**
+            Tienes los siguientes datos:
+                - Tema: The impact of technology on society
+                - Level: Avanzado, por lo tanto el nuemor de palabras es 200
+                - Idioma de aprendizaje: Alemán
+                - Idioma nativo: Inlgés
+            Tu respuesta deberia ser en este ejemplo:
+            Topic: The impact of technology on society
+            Number of words: 200
+            Grammatical aspects:
+                - Use of Perfekt und Präteritum (ich habe gesprochen, ich sprach)
+                - Use of Futur I (ich werde sprechen)
+                - Use of direkten und indirekten Objektpronomen (ihn, ihr, es)
+                - Use of passive Stimme (Das Buch wurde geschrieben)
+                - Use of Konjunktiv I in Nebensätzen (Es ist notwendig, dass du kommst)
+                - Use of Häufigkeitsadverbien (oft, selten)
+                - Use of Komparative und Superlative (mehr/weniger... als)
+                - Use of zusammengesetzten Präpositionen (in der Nähe von, neben)
+        **Ejemplo 3**
+            Tienes los siguientes datos:
+                - Tema: La globalización y sus consecuencias
+                - Level: Profesional, por lo tanto el nuemor de palabras es 250
+                - Idioma de aprendizaje: Francés
+                - Idioma nativo: Portugués
+            Tu respuesta deberia ser en este ejemplo:
+            Tema: A globalização e as suas consequências
+            Número de palavras: 250
+            Aspectos gramaticais:
+                - Uso de subjonctif passé et plus-que-parfait (que j’aie parlé, que j’eusse parlé)
+                - Uso de temps composés avancés (passé antérieur, conditionnel passé)
+                - Uso de phrases passives dans les registres formels
+                - Uso de connecteurs argumentatifs avancés (par conséquent, en revanche)
+                - Uso de expressions idiomatiques pour contextes formels (avoir le vent en poupe)
+                - Uso de concordance des temps dans les narrations complexes
+                - Uso de style indirect dans les textes professionnels (Il a dit qu’il viendrait)
+                - Uso de phrases conditionnelles complexes (Si j'avais su, je serais venu)
+                - Uso de lexique technique selon le domaine professionnel
+                - Uso de périphrases verbales avancées (être en train de, venir de)
+        
+        **Nota importante:** Solo debes devolver la estructuta de la leccion, no debes devolver ninguna frase
+        **Nota importante:** Debes devolver todo el mensaje en {language}
+        """     
 
         completion = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[{"role": "system", "content": prompt}]
         )
         response = completion.choices[0].message.content.strip()
-        response_json = json.loads(response)
-        message_front = response_json["message_front"]
-        ASPECTS = response_json["aspects"]
-        llm_logger.debug(f"Instrucciones generadas correctamente: {message_front}")
-        llm_logger.debug(f"Aspectos generados correctamente: {ASPECTS}")
 
-        return message_front
+        return response
 
-    def generate_correction_prompt(self, aspects, language, level, word_count, user_text, num_aspects):
+    def generate_correction_prompt(self, native_language,aspects, language, level, word_count, user_text, num_aspects):
+        native_language = self.get_language_name(native_language)
+        llm_logger.info(f"native_language: {native_language}")
         prompt = f"""
-        Eres un LLM experto en corrección de redacciones en los idiomas Alemán, Inglés, Portugués, Español y Francés. Tu tarea consiste en analizar la redacción proporcionada por el usuario y realizar correcciones detalladas según los aspectos gramaticales y el nivel especificado.
+        You are an LLM expert in text corrections in German, English, Portuguese, Spanish, and French. Your task is to analyze the user's writing in {language}, correct the errors, and provide detailed corrections according to the specified grammatical aspects and level in {language}.
 
-        **Parámetros recibidos:**
-        1. **Aspectos gramaticales**: {aspects}
-        2. **Idioma del writing**: {language}
-        3. **Nivel de dificultad**: {level} (Principiante, Avanzado, Profesional)
-        4. **Número mínimo de palabras**: {word_count}
-        5. **Escrito del usuario**: "{user_text}"
+        **Received Parameters:**
+        1. **Grammatical aspects**: {aspects}
+        2. **Writing language**: {language}
+        3. **Difficulty level**: {level} (Beginner, Advanced, Professional)
+        4. **Minimum word count**: {word_count}
+        5. **User's text**: "{user_text}"
 
-        **Instrucciones:**
-        1. Analiza el texto proporcionado por el usuario y realiza las siguientes acciones:
-        - Corrige los errores gramaticales detectados directamente en el texto del usuario.
-        - Indica las correcciones realizadas en el formato: "TextoCorrecto( T̶e̶x̶t̶o̶I̶n̶c̶o̶r̶r̶e̶c̶t̶o̶ /TextoCorregido)".
-        - Mantén el texto original intacto excepto para los errores corregidos.
-        2. Calcula la cantidad total de palabras en el texto proporcionado:
-        - Si el texto no cumple con el mínimo de palabras requeridas ({word_count}), informa al usuario y asigna automáticamente una nota de 0.
-        3. Evalúa el uso de los aspectos gramaticales proporcionados ({num_aspects} elementos):
-        - Identifica cuántos de los aspectos gramaticales especificados están presentes en el texto.
-        - Penaliza significativamente si no se utilizan los aspectos gramaticales esenciales.
-        4. Asigna una nota final basada en los siguientes criterios:
-        - **Número de palabras**:
-            - Si el texto cumple con el mínimo ({word_count}), procede con la evaluación.
-            - Si no cumple, asigna automáticamente una calificación de 0.
-        - **Uso de los aspectos gramaticales**:
-            - Calcula el porcentaje de aspectos gramaticales utilizados respecto al total proporcionado.
-            - Penaliza si faltan aspectos clave y penalizara con -0.75 por cada aspecto no utilizado.
-        - **Corrección gramatical general**:
-            - Evalúa la cantidad de errores gramaticales detectados y penaliza proporcionalmente con -0.25 por cada error.
-        - La nota final será del 0 al 10.
+        **Instructions:**
+        1. Analyze the provided text and perform the following actions:
+        - Correct grammatical errors found in the user's text.
+        - Show corrections in the format: "CorrectedText( I̶n̶c̶o̶r̶r̶e̶c̶t̶ /Corrected)".
+        - Keep the original text intact except for the corrected parts.
+        2. Count the total words in the user's text:
+        - If the text does not meet the minimum required words ({word_count}), inform the user and assign a grade of 0.
+        3. Evaluate the use of the provided grammatical aspects ({num_aspects} elements):
+        - Identify how many of these specified grammatical aspects are present in the text.
+        - Significantly penalize if essential grammatical aspects are missing.
+        4. Assign a final grade based on the following:
+        - **Word count**:
+            - If it meets {word_count}, proceed with the evaluation.
+            - If not, assign 0.
+        - **Use of grammatical aspects**:
+            - Calculate the percentage of grammatical aspects used.
+            - Penalize with -0.75 for each aspect not used.
+        - **Overall grammatical correctness**:
+            - For each grammatical error found, penalize by -0.25.
+        - The final score ranges from 0 to 10.
 
-        **Ejemplo de estructura de corrección 1: con **
-        word_count = 10
-        num_aspects = 4
-        Input del usuario:
-        "Helo I'm plaller of basketball. Yesterday I goed to the park."
-        Lo que debes devolver para este ejemplo:
-        
-        ### **Corrección:**
-        Helo( H̶e̶l̶o̶ /Hello) I'm plaller( p̶l̶a̶l̶l̶e̶r̶ /player) of basketball. Yesterday I goed( g̶o̶e̶d̶ /went) to the park.
+        **Example of correction structure:**
+        If user writes: "Helo I'm plaller of basketball. Yesterday I goed to the park."
+        You return something like:
 
-        ### **Evaluación:**
-        - Aspectos gramaticales utilizados: 2/4 especificados (penalización).
-        
-        ## **Nota final: 0**.
+        ### **Correction:**
+        Helo (H̶e̶l̶o̶ /Hello) I'm plaller (p̶l̶a̶l̶l̶e̶r̶ /player) of basketball. Yesterday I goed (g̶o̶e̶d̶ /went) to the park.
 
-        **Ejemplo de estructura de corrección 2:**
-        word_count = 10
-        num_aspects = 4
-        Input del usuario:
-        "Hello, I play basketball and I like to go to the park."
-        
-        Lo que debes devolver para este ejemplo:
+        ### **Evaluation:**
+        - Grammatical aspects used: 2/4 specified.
 
-        ### **Corrección:**
-        Hello, I play basketball and I like to go to the park. (Sin errores encontrados).
+        ### **Suggestions:**
+        - Use the correct spelling for "Hello."
 
-        ### **Evaluación:**
-        - Aspectos gramaticales utilizados: 4/4 especificados.
-        
-        ## **Nota final: 8**.
+        ## **Final grade: 0**
 
-        ### **Nota importante:**
-        - Asegúrate de calcular correctamente la proporción de aspectos gramaticales utilizados frente al total recibido.
-        - Si detectas errores comunes o frecuentes, sugiere al usuario qué aspectos gramaticales deben reforzar en su aprendizaje.
+        **Important:** 
+        - Make sure to calculate the proportion of grammatical aspects used against the total. 
+        - If common errors are detected, suggest which grammatical aspects should be improved.
 
-        **Ejemplo de estructura de corrección 3:**
-        Input del usuario:
-        Hello! My name is Juan Carlos. I are 20 years old. I live in Madrid. The Madrid is a big city in Spain. I have a small family. My father is doctor, and my mother is teacher. I have one brother and one sister. He is very funny, and she is smart. In my house, we have a cat. A cat name is Max. Max is black and white. I love Max because he make me happy. What is your favorite animal? In the morning, I go to school. My school is near my house. The teacher is very nice, and I like the English class. What is your teacher’s name? After school, I play football with my brother. It is very fun. I also read books. I like books about adventure.
-        
-        Lo que debes devolver para este ejemplo:
-
-        ### **Corrección:**
-
-        Hello! My name is Juan Carlos. I am( a̶r̶e̶ /am) 20 years old. I live in Madrid. ( T̶h̶e̶ / ) Madrid is a big city in Spain. I have a small family. My father is( /a) doctor, and my mother is( /a) teacher. I have one brother and one sister. He is very funny, and she is smart. In my house, we have a cat. ((a̶ ̶ /The or) ( a̶ ̶ / My)) cat name is Max. Max is black and white. I love Max because he( m̶a̶k̶e̶ /makes) me happy. What is your favorite animal? In the morning, I go to school. My school is near my house. The teacher is very nice, and I like( /the) English class. What is your teacher’s name? After school, I play football with my brother. It is very fun. I also read books. I like books about adventure.
-
-        ### **Evaluación:**
-        - Aspectos gramaticales utilizados: 3/4 especificados. (Uso correcto de "to be", artículos y pronombres. Preguntas simples presentes.)
-        - Correcciones gramaticales: 9 errores encontrados.
-
-        ### **Sugerencia:**
-        Te recomiendo practicar más el verbo "to be" y el uso correcto de artículos definidos e indefinidos. 
-        
-        ## **La nota final es 7**.
-
-        
-        Para calcular la nota final para este caso, consideramos:(esto no forma parte de la respuesta nada mas es para que sepas como corregir esto)
-
-        - Penalty por el uso de 3 de 4 aspectos gramaticales: (-1*0.75) puntos.
-        - Penalty por 9 errores gramaticales: (-9*0.25) puntos.
-        - Puntaje base = 10 - 0.75 - 3 = 7.
-
-
-        No deberas añadir nada mas de lo que se muestra en los ejemplos
-        Devuelve la corrección del texto del usuario con las correcciones gramaticales y la evaluación final. No tienes que devolver nada más que eso.
+        **All parts of the final answer (Correction, Evaluation, Suggestion, and Final Grade) MUST be entirely in {language}. No Spanish or other languages should appear in the final answer. Use {language} consistently in your final output.**
+        You only neet to return the structure of correciton, evaulation, suggestion and final grade in {language}
+        **Repeat: The final answer must be entirely in {language}, including corrections, evaluation, suggestions, and the final grade. Do not provide any text in any other language.**
         """
+
 
         completion = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[{"role": "system", "content": prompt}]
         )
         response = completion.choices[0].message.content.strip()
-        llm_logger.debug(f"Corrección generada correctamente: {response}")
         return response
     
     def generate_basic_correction_prompt(self, target_sentence, user_translation, target_language, native_language):
+        native_language = self.get_language_name(native_language)
         prompt = f"""
         Evalúa la traducción del usuario de {native_language} a {target_language}.
 
@@ -342,13 +573,13 @@ class WritingNova():
         return feedback
    
     def generate_basic_start(self, target_language, native_language):
+        native_language = self.get_language_name(native_language)
         topics = self.get_basic_topics(target_language)
         if not topics:
             return "Idioma no soportado para actividades básicas."
 
         # Seleccionar un tema aleatorio
         topic = random.choice(topics)
-        llm_logger.debug(f"En generate_basic_start con los parámetros: {target_language}, {native_language}")
         # Generar una frase básica en el idioma objetivo sobre el tema seleccionado
         prompt = f"""
         Proporciona una frase muy básica en {native_language} sobre el tema "{topic}".
@@ -395,7 +626,7 @@ class WritingNova():
         }
     
     def basic_hint(self, sentence, target_language, native_language):
-        llm_logger.debug(f"En basic_hint con los parámetros: {sentence}, {target_language}, {native_language}")
+        native_language = self.get_language_name(native_language)
         prompt = f"""
         Proporciona una pista para traducir la siguiente frase de {native_language} a {target_language}:
 
@@ -427,25 +658,23 @@ class WritingNova():
 
 
 
-async def generate_writing_instructions(language, level):
+async def generate_writing_instructions(native_language,language, level):
     writing_nova = WritingNova()
     print(f"Despues de generate_writing_instructions con los parámetros: {language}, {level}")
-    instructions = writing_nova.generate_start_prompt(language, level)
+    instructions = writing_nova.generate_start_prompt(native_language,language, level)
     return instructions
 
-async def generate_writing_correction(aspects,language, level, num_words, user_written_text, num_aspects):
+async def generate_writing_correction(native_language,aspects,language, level, num_words, user_written_text, num_aspects):
     writing_nova = WritingNova()
     # Primero obtenemos los aspectos (instrucciones)
     # Luego generamos la corrección
-    correction_response = writing_nova.generate_correction_prompt(aspects, language, level, num_words, user_written_text, num_aspects)
+    correction_response = writing_nova.generate_correction_prompt(native_language,aspects, language, level, num_words, user_written_text, num_aspects)
     return {"correction": correction_response}
 
 async def generate_basic_writing_correction(sentence,language_class,native_language, user_written_text):
     writing_nova = WritingNova()
     # Primero obtenemos los aspectos (instrucciones)
     # Luego generamos la corrección
-    llm_logger.debug(f"En generate_basic_writing_correction con los parámetros: {language_class}, {native_language}, {user_written_text}")
-    llm_logger.debug(f"En generate_basic_writing_correction sentence: {sentence}")
     correction_response = writing_nova.generate_basic_correction_prompt(sentence, user_written_text, language_class, native_language)
     return {"correction": correction_response}
 

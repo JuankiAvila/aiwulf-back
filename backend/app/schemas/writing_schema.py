@@ -6,6 +6,7 @@ from typing import Dict, Any
 
 # Schemas existentes
 class LLM_writing_request(BaseModel):
+    native_language: str
     aspects: str
     language: str
     level: str
@@ -17,6 +18,7 @@ class LLM_writing_response(BaseModel):
     response: Dict[str, Any]
 
 class InstructionsRequest(BaseModel):
+    native_language: str
     language: str
     level: str
 

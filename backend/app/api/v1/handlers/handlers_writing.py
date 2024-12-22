@@ -9,7 +9,7 @@ from backend.app.services.llm_writing import (
     generate_basic_writing_hint,
     generate_basic_writing_instructions
 )
-from backend.app.schemas.llm_writing import (
+from backend.app.schemas.writing_schema import (
     LLM_writing_request,
     LLM_writing_response,
     InstructionsRequest,
@@ -32,6 +32,7 @@ async def handle_llm_writing(data: LLM_writing_request) -> LLM_writing_response:
     """
     try:
         correction_response = await generate_writing_correction(
+            native_language=data.native_language,
             aspects=data.aspects,
             language=data.language,
             level=data.level,
@@ -51,6 +52,7 @@ async def handle_writing_instructions(data: InstructionsRequest):
     """
     try:
         instructions = await generate_writing_instructions(
+            native_language=data.native_language,
             language=data.language,
             level=data.level
         )
